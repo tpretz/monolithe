@@ -77,7 +77,7 @@ func providerConfigure(d *schema.ResourceData) (root interface{}, err error) {
     err = s.Start()
 
     if err != nil {
-        err = errors.New("Unable to connect to Nuage VSD: " + err.Description)
+        err = errors.New("Unable to connect to Nuage VSD: " + err.Error())
         return
     }
 
