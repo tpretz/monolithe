@@ -32,7 +32,7 @@ package nuagenetworks
 
 import (
     "github.com/hashicorp/terraform/helper/schema"
-    "github.com/nuagenetworks/vspk-go/vspk"
+    "github.com/tpretz/vspk-go/vspk"
 )
 
 func resource{{ specification.entity_name }}() *schema.Resource {

@@ -6,7 +6,7 @@ import (
     "crypto/tls"
     "github.com/hashicorp/terraform/helper/schema"
     "github.com/hashicorp/terraform/terraform"
-    "github.com/nuagenetworks/vspk-go/vspk"
+    "github.com/tpretz/vspk-go/vspk"
     "github.com/nuagenetworks/go-bambou/bambou"
 )
 
