@@ -85,9 +85,8 @@ func dataSource{{ specification.entity_name }}() *schema.Resource {
 }
 
 
-func dataSource{{specification.entity_name}}Read(d *schema.ResourceData, m interface{}) error {
+func dataSource{{specification.entity_name}}Read(d *schema.ResourceData, m interface{}) (err error) {
     filtered{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}} := vspk.{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}List{}
-    err := &bambou.Error{}
     fetchFilter := &bambou.FetchingInfo{}
     
     filters, filtersOk := d.GetOk("filter")
@@ -109,13 +108,13 @@ func dataSource{{specification.entity_name}}Read(d *schema.ResourceData, m inter
     parent := &vspk.{{ parent_apis[0].remote_spec.entity_name }}{ID: d.Get("parent_{{ parent_apis[0].remote_spec.instance_name }}").(string)}
     filtered{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}, err = parent.{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}(fetchFilter)
     if err != nil {
-        return err
+        return
     }
         {%- else %}
     parent := m.(*vspk.Me)
     filtered{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}, err = parent.{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}(fetchFilter)
     if err != nil {
-        return err
+        return
     }
         {%- endif %}
     {%- else %}
@@ -129,7 +128,7 @@ func dataSource{{specification.entity_name}}Read(d *schema.ResourceData, m inter
         parent := &vspk.{{ api.remote_spec.entity_name }}{ID: attr.(string)}
         filtered{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}, err = parent.{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}(fetchFilter)
         if err != nil {
-            return err
+            return
         }
                 {%- if loop.last %}
                     {%- if (parent_apis | selectattr('remote_spec.instance_name', 'eq', 'me')| list | length) == 0 %}
@@ -139,7 +138,7 @@ func dataSource{{specification.entity_name}}Read(d *schema.ResourceData, m inter
         parent := m.(*vspk.Me)
         filtered{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}, err = parent.{{specification.entity_name_plural[0:1].upper() + specification.entity_name_plural[1:]}}(fetchFilter)
         if err != nil {
-            return err
+            return
         }
     }
                     {%- endif %}
@@ -174,5 +173,5 @@ func dataSource{{specification.entity_name}}Read(d *schema.ResourceData, m inter
 
     d.SetId({{specification.entity_name}}.Identifier())
     
-    return nil
+    return
 }

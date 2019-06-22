@@ -25,23 +25,22 @@ func Provider() terraform.ResourceProvider {
             },
             "username": &schema.Schema{
                 Type:        schema.TypeString,
-                Required:    false,
+                Optional:    true,
                 DefaultFunc: schema.EnvDefaultFunc("VSD_USERNAME", "csproot"),
             },
             "password": &schema.Schema{
                 Type:        schema.TypeString,
-                Required:    false,
-                Sensitive:   false,
+                Optional:    true,
                 DefaultFunc: schema.EnvDefaultFunc("VSD_PASSWORD", "csproot"),
             },
             "certificate_path": &schema.Schema{
                 Type:        schema.TypeString,
-                Required:    false,
+                Optional:    true,
                 DefaultFunc: schema.EnvDefaultFunc("VSD_CERTIFICATE_PATH", nil),
             },
             "key_path": &schema.Schema{
                 Type:        schema.TypeString,
-                Required:    false,
+                Optional:    true,
                 DefaultFunc: schema.EnvDefaultFunc("VSD_KEY_PATH", nil),
             },
         },
