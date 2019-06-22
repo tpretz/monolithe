@@ -7,7 +7,7 @@ import (
     "github.com/hashicorp/terraform/helper/schema"
     "github.com/hashicorp/terraform/terraform"
     "github.com/tpretz/vspk-go/vspk"
-    "github.com/nuagenetworks/go-bambou/bambou"
+    "github.com/tpretz/go-bambou/bambou"
 )
 
 func Provider() terraform.ResourceProvider {

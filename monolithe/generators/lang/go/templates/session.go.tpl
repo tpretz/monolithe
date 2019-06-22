@@ -3,7 +3,7 @@
 package {{ name }}
 
 import (
-    "github.com/nuagenetworks/go-bambou/bambou"
+    "github.com/tpretz/go-bambou/bambou"
     "fmt"
     "strings"
     "crypto/tls"

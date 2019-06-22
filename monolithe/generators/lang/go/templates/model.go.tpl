@@ -2,7 +2,7 @@
 
 package {{ name }}
 
-import "github.com/nuagenetworks/go-bambou/bambou"
+import "github.com/tpretz/go-bambou/bambou"
 
 // {{specification.entity_name}}Identity represents the Identity of the object
 var {{specification.entity_name}}Identity = bambou.Identity {
