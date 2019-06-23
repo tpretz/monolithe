@@ -45,7 +45,7 @@ class APIVersionWriter(TemplateFileWriter):
         """
         super(APIVersionWriter, self).__init__(package="monolithe.generators.lang.terraform")
 
-        self.api_version = api_info["version"]
+        self.api_version = os.getenv("API_VERSION", api_info["version"])
         self.api_root = api_info["root"]
         self.api_prefix = api_info["prefix"]
 
@@ -96,7 +96,8 @@ class APIVersionWriter(TemplateFileWriter):
                    template_name="provider.go.tpl",
                    class_prefix = self._class_prefix,
                    specification_set_resources = resources,
-                   specification_set_datasources = datasources)
+                   specification_set_datasources = datasources,
+                   version = self.api_version)
     
     def _get_actions(self, obj):
         return {

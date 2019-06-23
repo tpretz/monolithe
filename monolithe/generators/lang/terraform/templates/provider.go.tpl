@@ -6,8 +6,8 @@ import (
     "crypto/tls"
     "github.com/hashicorp/terraform/helper/schema"
     "github.com/hashicorp/terraform/terraform"
-    "github.com/tpretz/vspk-go/vspk"
-    "github.com/tpretz/go-bambou/bambou"
+    vspk "github.com/tpretz/vspk-go/vspk/{{ version }}"
+    "github.com/nuagenetworks/go-bambou/bambou"
 )
 
 func Provider() terraform.ResourceProvider {

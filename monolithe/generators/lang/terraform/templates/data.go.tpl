@@ -31,8 +31,8 @@ package nuagenetworks
 import (
     "fmt"
     "github.com/hashicorp/terraform/helper/schema"
-    "github.com/tpretz/vspk-go/vspk"
-    "github.com/tpretz/go-bambou/bambou"
+    vspk "github.com/tpretz/vspk-go/vspk/{{ version }}"
+    "github.com/nuagenetworks/go-bambou/bambou"
 )
 
 func dataSource{{ specification.entity_name }}() *schema.Resource {

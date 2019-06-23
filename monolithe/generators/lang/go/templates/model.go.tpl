@@ -2,7 +2,7 @@
 
 package {{ name }}
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // {{specification.entity_name}}Identity represents the Identity of the object
 var {{specification.entity_name}}Identity = bambou.Identity {
@@ -36,7 +36,7 @@ type {{specification.entity_name}} struct {
     ParentID   string `json:"parentID,omitempty"`
     ParentType string `json:"parentType,omitempty"`
     Owner      string `json:"owner,omitempty"`
-    {% for attribute in specification.attributes -%}
+    {% for attribute in specification.attributesi if attribute.local_name not in ("functions") -%}
     {% set field_name = attribute.local_name[0:1].upper() + attribute.local_name[1:] -%}
     {% set can_ommit = attribute.type != "boolean" -%}
     {{ field_name }} {{ attribute.local_type }} `json:"{{attribute.local_name}}{% if can_ommit -%},omitempty{% endif -%}"`
@@ -52,7 +52,7 @@ type {{specification.entity_name}} struct {
 func New{{specification.entity_name}}() *{{specification.entity_name}} {
 
     return &{{specification.entity_name}}{
-        {% for attribute in specification.attributes -%}
+        {% for attribute in specification.attributesi if attribute.local_name not in ("functions") -%}
         {% set field_name = attribute.local_name[0:1].upper() + attribute.local_name[1:] -%}
         {% if attribute.default_value and attribute.local_type != "list" -%}
         {% if attribute.local_type == "string" -%}
